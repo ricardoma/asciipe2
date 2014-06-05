@@ -37,19 +37,24 @@ var errorCallback = function(e) {
 };
 
 // Not showing vendor prefixes.
-navigator.webkitGetUserMedia({video: {mandatory: {maxWidth: 160,maxHeight: 100}}
-  , audio: false}, function(localMediaStream) {
-  MediaStream = localMediaStream;
-  var video = document.querySelector('video');
-  video.src = window.URL.createObjectURL(localMediaStream);
+var userMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
-  // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
-  // See crbug.com/110938.
-  video.onloadedmetadata = function(e) {
-    setInterval(snapshot, 30);
-  };
-}, errorCallback);
+try{
+  navigator.webkitGetUserMedia({video: {mandatory: {maxWidth: 160,maxHeight: 100}}
+    , audio: false}, function(localMediaStream) {
+    MediaStream = localMediaStream;
+    var video = document.querySelector('video');
+    video.src = window.URL.createObjectURL(localMediaStream);
 
+    // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+    // See crbug.com/110938.
+    video.onloadedmetadata = function(e) {
+      setInterval(snapshot, 30);
+    };
+  }, errorCallback);
+}catch(err){
+
+}
 
 
 function asciiFromCanvas(canvas) {
