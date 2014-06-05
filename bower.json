@@ -1,0 +1,14 @@
+{
+  "name": "asciipe2",
+  "version": "0.0.0",
+  "authors": [
+    "Ricardo Macario <ricardomacario91@gmail.com>"
+  ],
+  "description": "Watch your friends through ascii characters instead of video",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "socket.io": "~1.0.4",
+    "jquery": "~2.1.1"
+  }
+}
