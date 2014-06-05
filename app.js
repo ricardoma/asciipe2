@@ -32,7 +32,7 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 
-var server =  app.listen(3000);
+var server =  app.listen(process.env.PORT || 3000);
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
